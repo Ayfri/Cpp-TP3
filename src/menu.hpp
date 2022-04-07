@@ -2,8 +2,8 @@
 
 #include <conio.h>
 #include <iostream>
-/*#include "exercices/ex1.hpp"
-#include "exercices/ex2.hpp"
+#include "exercices/ex1.hpp"
+/*#include "exercices/ex2.hpp"
 #include "exercices/ex3.hpp"*/
 #include "utils.hpp"
 

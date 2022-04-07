@@ -2,10 +2,10 @@
 
 void runExercice(const int &n) {
 	switch (n) {
-		/*case 1:
+		case 1:
 			ex1();
 			break;
-		case 2:
+		/*case 2:
 			ex2();
 			break;
 		case 3:
