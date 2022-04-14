@@ -1,16 +1,14 @@
 #include "menu.hpp"
 
+
 void runExercice(const int &n) {
 	switch (n) {
 		case 1:
 			ex1();
 			break;
-		/*case 2:
-			ex2();
+		case 2:
+			Test_Fonction();
 			break;
-		case 3:
-			ex3();
-			break;*/
 		default:
 			std::cout << "Choix invalide." << std::endl;
 			break;
@@ -32,7 +30,7 @@ void show_menu() {
 		
 		if (tolower(input) == "exit") break;
 		
-		if (input.length() != 1 || input[0] < '1' || input[0] > '5') {
+		if (input.length() != 1U || input[0U] < '1' || input[0U] > '5') {
 			std::cout << "Numéro d'exercice invalide." << '\n';
 			continue;
 		}
