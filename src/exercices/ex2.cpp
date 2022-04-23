@@ -8,18 +8,18 @@ void detruire_personne(Personne &p) {
 	p.~Personne();
 }
 
-void initialiser_personne(Personne &p, const int &numero, const char (&nom)[10], const Sexe &sexe) {
+void initialiser_personne(Personne &p, const int &numero, const std::string& nom, const Sexe &sexe) {
 	p.numero = numero;
 	p.sexe = sexe;
-	std::move(&(*nom), nom + sizeof(nom), &(*p.nom));
+	p.nom = nom;
 }
 
 void afficher_personne(const Personne &p) {
 	std::cout << "Personne " << p.numero << " : " << *p.nom << " (" << p.sexe << ")" << std::endl;
 }
 
-const char *nom_personne(const Personne &p) {
-	return p.nom;
+const std::string *nom_personne(const Personne &p) {
+	return &p.nom;
 }
 
 Sexe sexe_personne(const Personne &p) {
