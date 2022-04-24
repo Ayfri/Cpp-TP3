@@ -7,18 +7,22 @@
 #include "utils.hpp"
 
 /**
+ * @brief Exécute l'exercice demandé.
+ *
  * Prend un entier en entrée et exécute l'exercice correspondant.
  *
  * @param n le numéro de l'exercice à exécuter.
  */
-void runExercice(const int &n);
+static void runExercice(const int &n);
 
 /**
- * Affiche la liste des exercices.
+ * @brief Affiche la liste des exercices disponibles.
  */
-inline void show_exercices_list();
+static inline void show_exercices_list();
 
 /**
+ * @brief Affiche le menu principal.
+ *
  * Affiche le menu, demande à l'utilisateur de choisir un exercice, exécute l'exercice, affiche à nouveau le menu après.
  * L'utilisateur peut quitter le programme en écrivant "exit".
  */

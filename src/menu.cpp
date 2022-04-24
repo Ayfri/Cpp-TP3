@@ -1,7 +1,6 @@
 #include "menu.hpp"
 
-
-void runExercice(const int &n) {
+static void runExercice(const int &n) {
 	switch (n) {
 		case 1:
 			ex1();
@@ -15,7 +14,7 @@ void runExercice(const int &n) {
 	}
 }
 
-inline void show_exercices_list() {
+static inline void show_exercices_list() {
 	for (int i = 1; i < 3; ++i) std::cout << "Exercise " << i << "\n";
 }
 

@@ -9,6 +9,6 @@
 
 
 /**
- * Lancement du programme
+ * @brief Lance le TP3.
  */
 int main();

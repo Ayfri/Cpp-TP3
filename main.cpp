@@ -2,7 +2,7 @@
 
 int main() {
 #ifdef _WIN32
-	// fixe les accents dans les consoles sous windows
+	// fixe l'affichage des accents dans la console sous windows
 	SetConsoleOutputCP(65001);
 #endif
 	
