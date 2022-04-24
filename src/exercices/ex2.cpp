@@ -1,42 +1,75 @@
 #include "ex2.hpp"
 
-std::unique_ptr<Personne> creer_personne() {
+static constexpr auto sexe_to_string(const Sexe &sexe) {
+	switch (sexe) {
+		case Sexe::FEMININ:
+			return "Féminin";
+		case Sexe::MASCULIN:
+			return "Masculin";
+		default:
+			return "Inconnu";
+	}
+}
+
+static std::unique_ptr<Personne> creer_personne() {
 	return std::make_unique<Personne>();
 }
 
-void detruire_personne(Personne &p) {
-	p.~Personne();
+static void detruire_personne(std::unique_ptr<Personne> &p) {
+	if (!p) throw std::invalid_argument("Pointeur null");
+	
+	p = nullptr;
+	
+	std::cout << "Personne détruite." << '\n';
 }
 
-void initialiser_personne(Personne &p, const int &numero, const std::string& nom, const Sexe &sexe) {
-	p.numero = numero;
-	p.sexe = sexe;
-	p.nom = nom;
+static void initialiser_personne(const std::unique_ptr<Personne> &p, const unsigned long long &numero, const std::string& nom, const Sexe &sexe) {
+	if (!p) throw std::invalid_argument("Pointeur null");
+	
+	p->numero = numero;
+	p->sexe = sexe;
+	p->nom = nom;
 }
 
-void afficher_personne(const Personne &p) {
-	std::cout << "Personne " << p.numero << " : " << *p.nom << " (" << p.sexe << ")" << std::endl;
+static void afficher_personne(const std::unique_ptr<Personne> &p) {
+	if (!p) throw std::invalid_argument("Pointeur null");
+	
+	const auto sexe_name = sexe_to_string(sexe_personne(p));
+	auto numero = "0" + std::to_string(numero_personne(p));
+	// ajouter espace tous les 2 chiffres
+	for (auto i = numero.size(); i > 1; i -= 2) {
+			numero.insert(i, " ");
+	}
+	
+	std::cout << "Personne créée :"
+	<< "\n  Numéro : " + numero
+	<< "\n  Nom : " + nom_personne(p)
+	<< "\n  Sexe : " + std::to_string(sexe_personne(p)) + " (" + sexe_name + ")"
+	<< '\n';
 }
 
-const std::string *nom_personne(const Personne &p) {
-	return &p.nom;
+static std::string nom_personne(const std::unique_ptr<Personne> &p) {
+	if (!p) throw std::invalid_argument("Pointeur null");
+	
+	return p->nom;
 }
 
-Sexe sexe_personne(const Personne &p) {
-	return p.sexe;
+static Sexe sexe_personne(const std::unique_ptr<Personne> &p) {
+	if (!p) throw std::invalid_argument("Pointeur null");
+	
+	return p->sexe;
 }
 
-int numero_personne(const Personne &p) {
-	return p.numero;
+static unsigned long long numero_personne(const std::unique_ptr<Personne> &p) {
+	if (!p) throw std::invalid_argument("Pointeur null");
+	
+	return p->numero;
 }
 
 void Test_Fonction() {
 	const auto p = creer_personne();
-	constexpr char name[10] = "toto";
-	initialiser_personne(*p, 1, name, Sexe::MASCULIN);
-	afficher_personne(*p);
-	std::cout << "Nom : " << nom_personne(*p) << '\n';
-	std::cout << "Sexe : " << sexe_personne(*p) << '\n';
-	std::cout << "Numero : " << numero_personne(*p) << '\n';
-	detruire_personne(*p);
+	constexpr auto name = "toto";
+	initialiser_personne(p, 6'78'98'76'54ULL, name, Sexe::MASCULIN);
+	afficher_personne(p);
+	detruire_personne(const_cast<std::unique_ptr<Personne>&>(p));
 }

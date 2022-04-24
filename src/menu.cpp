@@ -16,7 +16,7 @@ void runExercice(const int &n) {
 }
 
 inline void show_exercices_list() {
-	for (int i = 1; i < 4; ++i) std::cout << "Exercise " << i << "\n";
+	for (int i = 1; i < 3; ++i) std::cout << "Exercise " << i << "\n";
 }
 
 void show_menu() {
